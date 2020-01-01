@@ -25,6 +25,7 @@ const cpuSpeed = cpus[0].speed
 console.log(cpuSpeed)
 //Find the CPU average cores on a given system
 function cpuAverage(){
+    const cpus = os.cpus()
     //Get milliseconds of each mode
     let idleMs = 0
     let totalMs = 0 
@@ -44,3 +45,10 @@ function cpuAverage(){
 }
 let x = cpuAverage()
 console.log(x)
+
+function getCpuLoad(){
+    const start = cpuAverage()
+    setTimeout(()=>{
+        const end = cpuAverage()
+    }, 100)
+}
