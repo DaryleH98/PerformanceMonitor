@@ -23,3 +23,24 @@ const numCores = cpus.length
 console.log(numCores)
 const cpuSpeed = cpus[0].speed
 console.log(cpuSpeed)
+//Find the CPU average cores on a given system
+function cpuAverage(){
+    //Get milliseconds of each mode
+    let idleMs = 0
+    let totalMs = 0 
+    //loop through each core
+    cpus.forEach( (aCore)=>{
+        //loop through each property of the current object
+        for(type in aCore.times){
+            console.log(type);
+            totalMs += aCore.times[type]
+        }
+        idleMs = aCore.times.idle;
+    })
+    return {
+        idle: idleMs/ cpus.length,
+        total: totalMs/cpus.length
+    }
+}
+let x = cpuAverage()
+console.log(x)
