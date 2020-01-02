@@ -33,7 +33,6 @@ function cpuAverage(){
     cpus.forEach( (aCore)=>{
         //loop through each property of the current object
         for(type in aCore.times){
-            console.log(type);
             totalMs += aCore.times[type]
         }
         idleMs = aCore.times.idle;
@@ -44,11 +43,20 @@ function cpuAverage(){
     }
 }
 let x = cpuAverage()
-console.log(x)
+
 
 function getCpuLoad(){
     const start = cpuAverage()
     setTimeout(()=>{
         const end = cpuAverage()
+        const idleDifference = end.idle - start.idle
+        const totalDifference = end.total - start.total
+        //Calculate the percentage of used cpu
+        const percentageCpu = 100 - Math.floor(100 * idleDifference/totalDifference)
+        console.log(percentageCpu)
     }, 100)
 }
+
+setInterval(()=>{
+    getCpuLoad()
+}, 1000)
