@@ -3,26 +3,26 @@
 To know about performance we need to know about 
 CPU Load, Memory Usage, OS Type and CPU Info
 */
-const os = require('os')
-const cpus = os.cpus()
-const freeMem = os.freemem()
-console.log(freeMem)
-const totalMem = os.totalmem()
-console.log(totalMem)
-const usedMem = totalMem - freeMem
-console.log(usedMem)
-const memUseage = Math.floor(usedMem/totalMem*100)/100
-console.log(memUseage)
-const osType = os.type()
-console.log(osType)
-const upTime = os.uptime()
-console.log(upTime)
-const cpuModel = cpus[0].model
-console.log(cpuModel)
-const numCores = cpus.length
-console.log(numCores)
-const cpuSpeed = cpus[0].speed
-console.log(cpuSpeed)
+const os = require('os');
+
+function performanceData() {
+    return new Promise(async(resolve, reject)=>{
+        const cpus = os.cpus();
+        const freeMem = os.freemem()
+        const totalMem = os.totalmem()
+        const usedMem = totalMem - freeMem
+        const memUseage = Math.floor(usedMem/totalMem*100)/100
+        const osType = os.type()
+        const upTime = os.uptime()
+        const cpuModel = cpus[0].model
+        const numCores = cpus.length
+        const cpuSpeed = cpus[0].speed
+        const cpuLoad = await getCpuLoad()
+        resolve({
+            freeMem,totalMem,usedMem,memUseage,osType,upTime,cpuModel,numCores,cpuSpeed,cpuLoad
+        })
+    }) 
+}
 //Find the CPU average cores on a given system
 function cpuAverage(){
     const cpus = os.cpus()
@@ -44,19 +44,21 @@ function cpuAverage(){
 }
 let x = cpuAverage()
 
-
 function getCpuLoad(){
-    const start = cpuAverage()
-    setTimeout(()=>{
-        const end = cpuAverage()
-        const idleDifference = end.idle - start.idle
-        const totalDifference = end.total - start.total
-        //Calculate the percentage of used cpu
-        const percentageCpu = 100 - Math.floor(100 * idleDifference/totalDifference)
-        console.log(percentageCpu)
-    }, 100)
+    return new Promise((resolve, reject)=>{
+        const start = cpuAverage()
+        setTimeout(()=>{
+            const end = cpuAverage()
+            const idleDifference = end.idle - start.idle
+            const totalDifference = end.total - start.total
+            //Calculate the percentage of used cpu
+            const percentageCpu = 100 - Math.floor(100 * idleDifference/totalDifference)
+            resolve(percentageCpu)
+        }, 100)
+    })
+
 }
 
-setInterval(()=>{
-    getCpuLoad()
-}, 1000)
+performanceData().then((allPerformanceData)=>{
+    console.log(allPerformanceData)
+})
