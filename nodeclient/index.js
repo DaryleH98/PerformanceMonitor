@@ -8,7 +8,19 @@ const io = require('socket.io-client')
 let socket = io('http://127.0.0.1:8181')
 
 socket.on("connect", ()=>{
-    console.log("I connected to the socket server")
+  const networkInterface = os.networkInterfaces()
+  let macAddress
+  for(let key in networkInterface){
+      if(!networkInterface[key][0].interval){
+          macA = networkInterface[key][0].mac
+          break
+      }
+  }
+  let perfDataInterval = setInterval(()=>{
+    performanceData().then((allPerformanceData)=>{
+       socket.emit('perfData', allPerformanceData)
+    })
+  },1000)
 })
 
 function performanceData() {
@@ -65,6 +77,3 @@ function getCpuLoad(){
 
 }
 
-performanceData().then((allPerformanceData)=>{
-    console.log(allPerformanceData)
-})
