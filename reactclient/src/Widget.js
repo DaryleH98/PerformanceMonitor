@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Cpu from './Cpu'
 import Mem from './Mem'
 import Info from './Info'
+
 class Widget extends Component{
     constructor(){
         super()
@@ -11,7 +12,13 @@ class Widget extends Component{
 
     render(){
         return(
-            <h1>Widget!!!</h1>
+            <div>
+                <h1>Widget!!!</h1>
+                <Cpu/>
+                <Mem />
+                <Info />
+            </div>
+            
         )
     }
 }

@@ -26,6 +26,7 @@ socket.on("connect", ()=>{
 
   let perfDataInterval = setInterval(()=>{
     performanceData().then((allPerformanceData)=>{
+       allPerformanceData.macAddress = macAddress
        socket.emit('perfData', allPerformanceData)
     })
   },1000)
