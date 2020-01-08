@@ -1,5 +1,6 @@
-const monoose = require('moongoose')
+const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+
 const Machine = new Schema({
   macAddress: String,
   cpuLoad: Number,

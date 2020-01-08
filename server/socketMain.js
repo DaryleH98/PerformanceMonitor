@@ -1,5 +1,12 @@
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://127.0.0.1/perfData', {useNewUrlParser: true})
+mongoose.connect('mongodb://127.0.0.1/perfData', {
+useUnifiedTopology: true,
+useNewUrlParser: true,
+})
+.then(() => console.log('DB Connected!'))
+.catch(err => {
+console.log("DB Connection Error:" `${err.message}`);
+});
 const Machine = require('./models/Machine')
 
 function socketMain(io, socket){
