@@ -11,11 +11,13 @@ socket.on("connect", ()=>{
   const networkInterface = os.networkInterfaces()
   let macAddress
   for(let key in networkInterface){
-      if(!networkInterface[key][0].interval){
-          macA = networkInterface[key][0].mac
-          break
+      if(!networkInterface[key][0].internal){
+        macAddress = networkInterface[key][0].mac
+        break
       }
   }
+  socket.emit('clientAuth', '5t78yuhgirekjaht32i3')
+
   let perfDataInterval = setInterval(()=>{
     performanceData().then((allPerformanceData)=>{
        socket.emit('perfData', allPerformanceData)
