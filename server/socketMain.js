@@ -27,12 +27,14 @@ socket.on('clientAuth', (key)=>{
 
 socket.on('initPerfData',  async (data)=>{
      macAddress = data.macAddress
+     //now go check mongo
      const mongooseResponse = await checkAndAdd(data)
      console.log(mongooseResponse)
 })
 
 socket.on('perfData', (data)=>{
-    console.log(data)
+    console.log("Tick...")
+    io.to('ui').emit('data', data)
  })
 
 }

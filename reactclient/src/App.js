@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import socket from './utilities/socketConnection'
+import Widget from './Widget'
 
 class App extends Component {
     constructor(){
@@ -22,6 +23,7 @@ class App extends Component {
       console.log(this.state.performanceData);
       return (
         <div className="App">
+          <Widget/>
         </div>
       );
     }
