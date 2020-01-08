@@ -9,7 +9,7 @@ function Cpu(props){
         <h3>CPU load</h3>
         <div className="canvas-wrapper">
             <canvas className={props.cpuData.cpuWidgetId} width="200" height="200"></canvas>
-         
+            <div className="cpu-text">{props.cpuData.cpuLoad}</div>
         </div>
     
        </div>
