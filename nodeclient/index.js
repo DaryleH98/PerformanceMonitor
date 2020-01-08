@@ -9,6 +9,7 @@ let socket = io('http://127.0.0.1:8181')
 
 socket.on("connect", ()=>{
   const networkInterface = os.networkInterfaces()
+  console.log(networkInterface)
   let macAddress
   for(let key in networkInterface){
       if(!networkInterface[key][0].internal){
@@ -28,6 +29,11 @@ socket.on("connect", ()=>{
        socket.emit('perfData', allPerformanceData)
     })
   },1000)
+
+  socket.on('discoonect', ()=>{
+      clearInterval(perfDataInterval)
+  })
+
 })
 
 function performanceData() {

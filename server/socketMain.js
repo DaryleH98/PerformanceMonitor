@@ -11,6 +11,7 @@ const Machine = require('./models/Machine')
 
 function socketMain(io, socket){
 //console.log("A socket connected!", socket.id)
+let macAddress
 socket.on('clientAuth', (key)=>{
     if(key === '5t78yuhgirekjaht32i3'){
         //valid nodeClient
@@ -24,7 +25,7 @@ socket.on('clientAuth', (key)=>{
 })
 
 socket.on('initPerfData', (data)=>{
-    console.log(data)
+     macAddress = data.macAddress
 })
 
 socket.on('perfData', (data)=>{
