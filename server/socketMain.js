@@ -16,7 +16,8 @@ socket.on('clientAuth', (key)=>{
     if(key === '5t78yuhgirekjaht32i3'){
         //valid nodeClient
         socket.join('clients')
-    }else if(key == 'uihjt3refvdsadf'){
+    }else if(key === 'uihjt3refvdsadf'){
+        console.log("A react client has joined!")
         socket.join('ui')
     }
     else{
