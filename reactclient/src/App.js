@@ -36,7 +36,7 @@ class App extends Component {
       })
       return (
         <div className="App">
-          <Widget/>
+          {widgets}
         </div>
       );
     }

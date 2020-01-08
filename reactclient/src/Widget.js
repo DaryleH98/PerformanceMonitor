@@ -23,11 +23,12 @@ class Widget extends Component{
         const cpuSpeed = this.props.data
         const cpuLoad = this.props.data
         const macAddress = this.props.data
-        const cpu = {cpuLoad}
-        const mem = {totalMem, usedMem, memUseage, freeMem}
-        const info = {macAddress, osType, upTime, cpuModel, numCores, cpuSpeed}
+        const cpu = cpuLoad
+        const mem = [totalMem, usedMem, memUseage, freeMem]
+        const info = [macAddress, osType, upTime, cpuModel, numCores, cpuSpeed]
         return(
             <div>
+                <p>{this.props.data.cpuLoad}</p>
                 <Cpu cpuData = {cpu}/>
                 <Mem memData = {mem}/>
                 <Info infoData = {info}/>
