@@ -18,6 +18,11 @@ socket.on("connect", ()=>{
   }
   socket.emit('clientAuth', '5t78yuhgirekjaht32i3')
 
+  performanceData().then((allPerformanceData)=>{
+      allPerformanceData.macAddress = macAddress
+    socket.emit('initPerfData', allPerformanceData)
+  })
+
   let perfDataInterval = setInterval(()=>{
     performanceData().then((allPerformanceData)=>{
        socket.emit('perfData', allPerformanceData)
