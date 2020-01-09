@@ -1,7 +1,10 @@
 This project was bootstrapped with Create React App.
 
-Available Scripts
-In the project directory cd in react client directory :
+In the project directory cd in nodeclient directory :
+npm run start
+Then cd into server directory
+npm run start
+Again cd into reactclient directory
 
 npm start
 Runs the app in the development mode.
