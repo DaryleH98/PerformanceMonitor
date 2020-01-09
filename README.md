@@ -1,5 +1,3 @@
-This project was bootstrapped with Create React App.
-
 In the project directory cd in nodeclient directory :
 npm run start
 Then cd into server directory
