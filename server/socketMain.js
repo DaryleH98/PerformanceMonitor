@@ -18,11 +18,28 @@ socket.on('clientAuth', (key)=>{
         socket.join('clients')
     }else if(key === 'uihjt3refvdsadf'){
         console.log("A react client has joined!")
+        Machine.find({}, (err,docs)=>{
+            docs.forEach((aMachine)=>{
+                // on load, assume that all machines are offline
+                aMachine.isActive = false;
+                io.to('ui').emit('data',aMachine);
+            })
+        })
         socket.join('ui')
     }
     else{
         socket.disconnect(true)
     }
+})
+
+socket.on('disconnect', ()=>{
+    Machine.find({macAddress: macAddress}, (err, docs)=>{
+        if(docs.length > 0){
+            //send one last emit to react
+            docs[0].isActive = false
+            io.to('ui').emit('data',docs[0])
+        }
+    })
 })
 
 socket.on('initPerfData',  async (data)=>{

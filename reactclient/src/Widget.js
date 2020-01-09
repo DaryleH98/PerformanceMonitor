@@ -22,7 +22,7 @@ class Widget extends Component{
 
         let notActiveDiv = '';
         if(!isActive){
-            notActiveDiv = <div className="not-active"></div>
+            notActiveDiv = <div className="not-active">Offline</div>
         }
 
 
