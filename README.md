@@ -2,7 +2,7 @@ In the project directory cd in nodeclient directory :
 npm run start
 Then cd into server directory
 npm run start
-Again cd into reactclient directory
+again cd into reactclient directory
 
 npm start
 Runs the app in the development mode.
