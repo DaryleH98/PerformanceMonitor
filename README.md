@@ -1,6 +1,7 @@
 <h1>Performance Monitor</h1>
-<p> In the project directory cd in nodeclient directory </p>
+<p> This project was built using Express, React, Redis and Mongoose db</p>
 <h1>Development Server</h1>
+<p> In the project directory cd in nodeclient directory </p>
 <p> npm run start </p>
 <p> Then cd into server directory </p>
 <p> npm run start </p>
